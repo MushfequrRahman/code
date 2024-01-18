@@ -1,0 +1,21 @@
+SELECT user1.factoryid,division.divisionid,(department.deptid) AS departmentid,
+(section.secid) AS sectionid,
+(subsection.subsecid) AS subsectionid,
+user1.location,user1.ename,user1.bname,user1.parentdesignationid,
+user1.childdesignationid,user1.religion,user1.maritual,user1.dob,user1.doj,user1.hdistrict,
+user1.epermanentaddress,user1.bpermanentaddress,user1.epresentaddress,user1.bpresentaddress,
+user1.nid,user1.blodgroup,user1.gender,user1.salary,user1.efficiency,user1.identification,
+user1.oemail,user1.pemail,user1.pmobile,user1.emobile,user1.user_type,user1.service_type,
+user1.puserid,user1.userid,user1.ruserid,user1.password,user1.image,user1.ustatus
+ FROM user1
+		LEFT JOIN factory ON factory.factoryid=user1.factoryid
+		LEFT JOIN division ON division.divisionname=user1.divisionid
+		AND factory.factoryid=division.factoryid
+		LEFT JOIN department ON department.departmentname=user1.departmentid
+		AND factory.factoryid=department.factoryid
+		LEFT JOIN section ON section.sectionname=user1.sectionid
+		AND factory.factoryid=section.factoryid
+		LEFT JOIN subsection ON subsection.subsectionname=user1.subsectionid
+		AND factory.factoryid=subsection.factoryid
+		 WHERE factory.factoryid='BGL'
+		 GROUP BY userid 
